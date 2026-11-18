@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chioma Kamsi Victor — CV</title>
+  <style>
+    :root {
+      --ink: #0f172a; --muted: #64748b; --line: #e2e8f0;
+      --indigo: #6366f1; --side: #1e1b4b; --accent: #0891b2;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body {
+      font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      background: #e9edf5; color: var(--ink); line-height: 1.55;
+      padding: 24px 16px;
+    }
+
+    /* Toolbar (screen only) */
+    .toolbar {
+      max-width: 820px; margin: 0 auto 16px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      background: #fff; border: 1px solid var(--line); border-radius: 12px;
+      padding: 12px 16px; box-shadow: 0 6px 20px -10px rgba(15,23,42,.25);
+    }
+    .toolbar p { font-size: .85rem; color: var(--muted); }
+    .toolbar p b { color: var(--ink); }
+    .btn-pdf {
+      background: linear-gradient(135deg, #6366f1, #0891b2); color: #fff; border: none;
+      padding: 9px 18px; border-radius: 8px; font-weight: 600; font-size: .9rem; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-pdf:hover { filter: brightness(1.05); }
+
+    /* CV page */
+    .cv {
+      max-width: 820px; margin: 0 auto; background: #fff; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 20px 50px -20px rgba(15,23,42,.35); display: flex; min-height: 1000px;
+    }
+    .cv-side { width: 33%; background: var(--side); color: #e9e8f5; padding: 38px 28px; }
+    .cv-main { width: 67%; padding: 38px 34px; }
+
+    /* Sidebar */
+    .av {
+      width: 88px; height: 88px; border-radius: 50%; margin: 0 auto 16px;
+      background: linear-gradient(135deg, #6366f1, #22d3ee); display: grid; place-items: center;
+      font-size: 1.7rem; font-weight: 800; color: #fff; border: 3px solid rgba(255,255,255,.2);
+    }
+    .side-name { text-align: center; font-size: 1.3rem; font-weight: 800; letter-spacing: -.5px; }
+    .side-title { text-align: center; color: #a5b4fc; font-size: .85rem; font-weight: 600; margin-bottom: 22px; }
+
+    .side-h {
+      font-size: .72rem; letter-spacing: 2px; text-transform: uppercase; color: #c7d2fe;
+      margin: 22px 0 10px; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,.15); padding-bottom: 6px;
+    }
+
+    .side-contact { list-style: none; }
+    .side-contact li { margin-bottom: 11px; }
+    .side-contact .lbl {
+      display: block; font-size: .66rem; letter-spacing: 1px; text-transform: uppercase;
+      color: #a5b4fc; margin-bottom: 2px;
+    }
+    .side-contact .val { font-size: .82rem; color: #e6ecff; word-break: break-word; }
+
+    .skill { margin-bottom: 10px; }
+    .skill .sl { display: flex; justify-content: space-between; font-size: .78rem; margin-bottom: 4px; color: #e6ecff; }
+    .skill .bar { height: 6px; background: rgba(255,255,255,.12); border-radius: 50px; overflow: hidden; }
+    .skill .bar i { display: block; height: 100%; background: linear-gradient(90deg, #6366f1, #22d3ee); border-radius: 50px; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tags span { font-size: .72rem; padding: 4px 9px; border-radius: 50px; background: rgba(255,255,255,.1); color: #e6ecff; }
+
+    .lang { font-size: .82rem; color: #e6ecff; margin-bottom: 6px; display: flex; justify-content: space-between; }
+    .lang b { color: #a5b4fc; font-weight: 600; }
+
+    /* Main */
+    .main-h {
+      font-size: 1.05rem; font-weight: 800; color: var(--ink); margin-bottom: 6px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .main-h::before { content: ''; width: 22px; height: 3px; border-radius: 3px; background: linear-gradient(90deg, #6366f1, #0891b2); display: inline-block; }
+    .sec { margin-bottom: 26px; }
+    .sec p { font-size: .88rem; color: #334155; margin-top: 4px; }
+
+    .job { margin-bottom: 16px; }
+    .job .top { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px; }
+    .job h3 { font-size: .95rem; font-weight: 700; }
+    .job h3 span { color: var(--indigo); font-weight: 600; }
+    .job .date { font-size: .76rem; color: var(--muted); white-space: nowrap; }
+    .job ul { list-style: none; margin-top: 6px; }
+    .job ul li { font-size: .83rem; color: #475569; padding-left: 16px; position: relative; margin-bottom: 4px; }
+    .job ul li::before { content: '\25B8'; color: var(--accent); position: absolute; left: 0; }
+
+    .proj { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; margin-top: 8px; }
+    .proj div { font-size: .83rem; }
+    .proj b { color: var(--ink); }
+    .proj span { color: var(--muted); display: block; font-size: .78rem; }
+
+    .edu { font-size: .85rem; margin-top: 6px; }
+    .edu .item { margin-bottom: 8px; }
+    .edu b { color: var(--ink); }
+    .edu .date { font-size: .76rem; color: var(--muted); }
+    .edu span { display: block; color: #475569; font-size: .8rem; }
+
+    @media (max-width: 640px) {
+      .cv { flex-direction: column; min-height: 0; }
+      .cv-side, .cv-main { width: 100%; }
+      .proj { grid-template-columns: 1fr; }
+    }
+
+    /* Print */
+    @media print {
+      @page { size: A4; margin: 0; }
+      html, body { background: #fff; padding: 0; }
+      .toolbar { display: none; }
+      .cv { box-shadow: none; border-radius: 0; max-width: 100%; margin: 0; min-height: 0; }
+      .cv-side { padding: 14mm 10mm; }
+      .cv-main { padding: 14mm 10mm; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <p><b>Save this CV as a PDF:</b> click the button, then choose <b>"Save as PDF"</b> as the destination.</p>
+    <button class="btn-pdf" onclick="window.print()">&#8595; Save as PDF</button>
+  </div>
+
+  <div class="cv">
+    <!-- Sidebar -->
+    <aside class="cv-side">
+      <div class="av">CKV</div>
+      <div class="side-name">Chioma Kamsi Victor</div>
+      <div class="side-title">AI &amp; Data Analyst</div>
+
+      <div class="side-h">Contact</div>
+      <ul class="side-contact">
+        <li><span class="lbl">Email</span><span class="val">kamsiLtd@sofatech.com</span></li>
+        <li><span class="lbl">Phone</span><span class="val">+229 0194 5093 93</span></li>
+        <li><span class="lbl">Location</span><span class="val">Nigeria &amp; Cotonou, B&eacute;nin</span></li>
+        <li><span class="lbl">X (Twitter)</span><span class="val">@YungRex72704</span></li>
+        <li><span class="lbl">Facebook</span><span class="val">/kamsi.victor.856518</span></li>
+      </ul>
+
+      <div class="side-h">AI &amp; Machine Learning</div>
+      <div class="skill"><div class="sl"><span>Python for ML</span><span>92%</span></div><div class="bar"><i style="width:92%"></i></div></div>
+      <div class="skill"><div class="sl"><span>scikit-learn</span><span>88%</span></div><div class="bar"><i style="width:88%"></i></div></div>
+      <div class="skill"><div class="sl"><span>TensorFlow / PyTorch</span><span>82%</span></div><div class="bar"><i style="width:82%"></i></div></div>
+      <div class="skill"><div class="sl"><span>NLP &amp; LLMs</span><span>80%</span></div><div class="bar"><i style="width:80%"></i></div></div>
+
+      <div class="side-h">Data Analysis</div>
+      <div class="skill"><div class="sl"><span>SQL &amp; Databases</span><span>90%</span></div><div class="bar"><i style="width:90%"></i></div></div>
+      <div class="skill"><div class="sl"><span>Power BI / Tableau</span><span>88%</span></div><div class="bar"><i style="width:88%"></i></div></div>
+      <div class="skill"><div class="sl"><span>Pandas &amp; NumPy</span><span>90%</span></div><div class="bar"><i style="width:90%"></i></div></div>
+      <div class="skill"><div class="sl"><span>Statistics &amp; Excel</span><span>86%</span></div><div class="bar"><i style="width:86%"></i></div></div>
+
+      <div class="side-h">Tools</div>
+      <div class="tags">
+        <span>Python</span><span>scikit-learn</span><span>TensorFlow</span>
+        <span>PyTorch</span><span>Pandas</span><span>NumPy</span>
+        <span>SQL</span><span>Power BI</span><span>Tableau</span><span>Jupyter</span>
+      </div>
+
+      <div class="side-h">Languages</div>
+      <div class="lang"><span>English</span><b>Fluent</b></div>
+      <div class="lang"><span>French</span><b>Conversational</b></div>
+    </aside>
+
+    <!-- Main -->
+    <main class="cv-main">
+      <section class="sec">
+        <div class="main-h">Profile</div>
+        <p>
+          AI &amp; Data Analyst with 5+ years of experience turning raw data into models,
+          insights, and decisions. Founder of <b>Sofatech</b>, where I lead machine learning,
+          analytics, and dashboard projects from data collection to deployment. I pair
+          statistical rigor with clean, reproducible code (Python, SQL) to deliver work that
+          drives measurable results.
+        </p>
+      </section>
+
+      <section class="sec">
+        <div class="main-h">Experience</div>
+
+        <div class="job">
+          <div class="top">
+            <h3>Founder &amp; Lead AI &amp; Data Analyst &mdash; <span>Sofatech</span></h3>
+            <div class="date">2021 &ndash; Present</div>
+          </div>
+          <ul>
+            <li>Built and deployed ML models (churn, fraud, demand) and analytics pipelines for 48+ clients across startups and SMEs.</li>
+            <li>Delivered 120+ data projects end-to-end &mdash; from data cleaning to dashboards and production models.</li>
+            <li>Designed reusable ML and reporting pipelines that cut turnaround by ~40%.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="top">
+            <h3>Freelance Data Analyst</h3>
+            <div class="date">2019 &ndash; 2021</div>
+          </div>
+          <ul>
+            <li>Analyzed sales, marketing, and operations data to surface trends and recommendations.</li>
+            <li>Built Power BI and Tableau dashboards and SQL queries for small businesses.</li>
+            <li>Managed data collection, cleaning, and stakeholder reporting independently end-to-end.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="sec">
+        <div class="main-h">Selected Projects</div>
+        <div class="proj">
+          <div><b>ChurnShield</b><span>Customer churn ML model</span></div>
+          <div><b>SalesScope</b><span>Revenue forecast dashboard</span></div>
+          <div><b>SentiMine</b><span>Sentiment analysis (NLP)</span></div>
+          <div><b>SegmentAI</b><span>Customer segmentation</span></div>
+          <div><b>FraudGuard</b><span>Fraud detection model</span></div>
+          <div><b>TrendLens</b><span>Executive KPI dashboard</span></div>
+        </div>
+      </section>
+
+      <section class="sec">
+        <div class="main-h">Education &amp; Certifications</div>
+        <div class="edu">
+          <div class="item">
+            <b>[Your degree &amp; field]</b> <span class="date">&mdash; [Year]</span>
+            <span>[Your university / institution]</span>
+          </div>
+          <div class="item">
+            <b>[Certificate name]</b> <span class="date">&mdash; [Year]</span>
+            <span>[Provider, e.g. Google Data Analytics / Coursera / IBM]</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // When opened from the portfolio "Download CV" button (?print=1),
+    // automatically open the browser's print dialog so it can be saved as a PDF.
+    (function () {
+      var params = new URLSearchParams(location.search);
+      if (params.get('print') === '1') {
+        window.addEventListener('load', function () {
+          setTimeout(function () { window.print(); }, 500);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
